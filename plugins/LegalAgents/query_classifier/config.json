@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "type": "classification",
+  "description": "Legal query classifier that routes requests to appropriate handling paths",
+  "functions": [
+    {
+      "name": "query_classifier",
+      "description": "Determines whether a user query requires formal legal information or can be handled with casual conversation",
+      "input": {
+        "parameters": [
+          {
+            "name": "user_query",
+            "description": "The raw input text from the user",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "output": {
+        "type": "string",
+        "enum": ["LEGAL", "CASUAL"],
+        "description": "Classification result indicating required response type"
+      },
+      "prompt": {
+        "path": "./prompts/query_classifier.txt",
+        "config": {
+          "temperature": 0.0,
+          "max_tokens": 10,
+          "stop_sequences": ["\n"],
+          "response_format": {
+            "type": "text",
+            "schema": "LEGAL|CASUAL"
+          }
+        }
+      },
+      "examples": [
+        {
+          "input": {
+            "user_query": "What's the penalty for speeding in Maharashtra?"
+          },
+          "output": "LEGAL"
+        },
+        {
+          "input": { "user_query": "How do I draft a rental agreement?" },
+          "output": "LEGAL"
+        },
+        {
+          "input": { "user_query": "Explain how bail works in simple terms" },
+          "output": "CASUAL"
+        },
+        {
+          "input": {
+            "user_query": "What's the difference between civil and criminal cases?"
+          },
+          "output": "CASUAL"
+        }
+      ]
+    }
+  ]
+}

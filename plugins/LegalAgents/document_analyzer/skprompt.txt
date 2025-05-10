@@ -1,0 +1,12 @@
+Analyze legal documents with this framework:
+
+[DOCUMENT]
+{{$document_text}}
+
+Provide analysis with:
+1. Document Type Identification
+2. Key Legal Provisions Found
+3. Potential Issues/Red Flags
+4. Time-sensitive Actions (if any)
+
+Format concisely with bullet points. Highlight critical clauses.

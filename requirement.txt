@@ -1,0 +1,14 @@
+chainlit
+python-dotenv
+semantic-kernel
+googlemaps
+requests
+python-docx
+PyPDF2
+azure-cognitiveservices-vision-computervision
+msrest
+azure-search-documents
+scikit-learn
+numpy
+azure-ai-inference
+openai

@@ -1,0 +1,15 @@
+Determine if the retrieved legal text sufficiently answers the question or if generated advice is needed.
+
+Context:
+{{$context}}
+
+Question: 
+{{$question}}
+
+Consider:
+- If context directly answers the question completely → NO
+- If context is relevant but needs interpretation → YES
+- If context is partially relevant → YES
+- If question is complex/multi-part → YES
+
+Respond with only "YES" or "NO".

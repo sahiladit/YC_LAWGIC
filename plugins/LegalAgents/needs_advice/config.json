@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "type": "classification",
+  "description": "Determines whether retrieved legal context requires supplemental AI-generated advice",
+  "functions": [
+    {
+      "name": "needs_advice",
+      "description": "Evaluates if context directly answers the question or requires AI interpretation",
+      "input": {
+        "parameters": [
+          {
+            "name": "context",
+            "description": "Relevant legal text extracted from knowledge base",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "question",
+            "description": "The user's original legal question",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "output": {
+        "type": "string",
+        "enum": ["YES", "NO"],
+        "description": "Whether generated legal advice is required"
+      },
+      "prompt": {
+        "path": "./prompts/needs_advice.txt",
+        "config": {
+          "temperature": 0.1,
+          "max_tokens": 5,
+          "stop_sequences": ["\n", "###"],
+          "response_format": {
+            "type": "text",
+            "schema": "YES|NO"
+          }
+        }
+      },
+      "examples": [
+        {
+          "input": {
+            "context": "Section 420 IPC prescribes punishment of imprisonment up to 7 years for cheating.",
+            "question": "What's the punishment for cheating?"
+          },
+          "output": "NO"
+        },
+        {
+          "input": {
+            "context": "The Consumer Protection Act 2019 defines unfair trade practices.",
+            "question": "Can I sue a shopkeeper for selling defective goods?"
+          },
+          "output": "YES"
+        },
+        {
+          "input": {
+            "context": "Rent control laws vary by state.",
+            "question": "How much can my landlord increase rent in Mumbai?"
+          },
+          "output": "YES"
+        },
+        {
+          "input": {
+            "context": "Article 21 guarantees right to life including clean environment.",
+            "question": "Which constitutional article protects environmental rights?"
+          },
+          "output": "NO"
+        }
+      ],
+      "metadata": {
+        "decision_criteria": [
+          "Context directly answers question → NO",
+          "Needs interpretation/synthesis → YES",
+          "Requires application to specific facts → YES",
+          "Partial match → YES"
+        ]
+      }
+    }
+  ]
+}

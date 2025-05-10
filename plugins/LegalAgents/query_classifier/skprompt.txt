@@ -1,0 +1,14 @@
+Classify the user's query into one of these categories:
+
+1. LEGAL - For specific legal questions requiring precise information
+2. CASUAL - For general legal discussions or hypotheticals
+
+Examples:
+[QUERY] "What is the punishment for theft under IPC?" → LEGAL
+[QUERY] "How do courts view divorce cases?" → LEGAL  
+[QUERY] "Explain contract law basics" → CASUAL
+[QUERY] "What would happen if..." → CASUAL
+
+User Query: {{$user_query}}
+
+Respond with only either "LEGAL" or "CASUAL".

@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "type": "completion",
+  "description": "Analyzes legal documents",
+  "completion": {
+    "max_tokens": 1200,
+    "temperature": 0.1
+  }
+}
